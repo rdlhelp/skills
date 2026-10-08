@@ -1,0 +1,23 @@
+{
+  "skill_name": "qa-exploratorio",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "testa pra mim a criação de cotação nova no local (formulário e a aba de colar o WhatsApp). tenta quebrar os campos de verdade, quero saber o que passa batido. uns 25 min tá bom",
+      "expected_output": "Charter com mapa de campos; testes de limite, vazio, espaços, 100k caracteres, unicode, XSS, formatos pt-BR, placa no texto colado (RN-003), duplo clique sem referência; relatório em docs/qa/AAAA-MM-DD-nova-cotacao.md no modelo",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "faz um QA na edição de uma cotação que já existe: o desmonte responde pelo link, depois volta e altera preço e frete, e a associação olha as soluções. quero ver se dá pra quebrar a edição da resposta e se algum perfil vê o que não devia (outra associação, orçamentista aprovando etc). local, ~25 min",
+      "expected_output": "Cria cotação, aciona em modo simulado/teste, responde e edita pelo /r/token; testa frete sem motivo, preço inválido, edição após escolha, IDOR entre perfis e tokens, vazamento nas respostas /api/r; relatório em docs/qa/",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "valida antes do deploy:hml o fluxo de envio aos desmontes e compra: acionar fornecedores (no modo teste/simulado, nada real), duplo clique, voltar e atualizar no meio, duas abas, e o pedido de compra até o desmonte despachar com NF. roda no local, 25 min",
+      "expected_output": "Portão de segurança confere modo simulado/teste; testa idempotência do dispatch e da compra (duplo clique, raceFetch, duas abas), limite do aprovador, NF obrigatória, cancelar após despacho; confere mensagens nos preview_logs; relatório em docs/qa/",
+      "files": []
+    }
+  ]
+}
